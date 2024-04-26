@@ -1,0 +1,58 @@
+To-do:
+1. try to run 1-6 alone and see if the compile, any modules or add ons we need, add below
+2. implement 7-9 for demonstration purposes and make sure that there are no errors with its connection with 1-6
+3. find resources for the below installed modules and comments at the top of each file (to avoid professors suspicion)
+4. plan and make a presentation for the class
+	- Introduce the project
+	- Introduce the challenges we faced
+	- Talk about files 1-6
+	- Talk about files 7-9
+	- Demo the code
+	- Summary and talk about challenges we faced
+5. plane and make a demo for the one-on-one with the professor
+	- Try to come up with questions that he may ask us
+	- Be sure to have resources ready just incase plagarism
+	- Talk about learning curve of python
+	- Be sure to have a solid demo
+
+Modules/add-ons:
+- pip install cryptography
+- pip install mnemonic
+
+How to get runtime:
+- Measure-Command {python file_name.py}
+
+
+---------------------------------------------------------------- Part 1 ---------------------------------------------------------------- 
+
+* = converted
+$ = completed
+
+Functionality files:
+
+1. *block.js
+2. *blockchain.js
+3. *client.js
+4. *miner.js
+5. *transaction.js
+6. *utils.js
+
+Latest notes (Elijah)
+- Test case for block.py works correctly
+- The following files compile, but not tested: blockchain.py, client.py, utils.py
+- The following files do not compile and also not tested: transaction.py
+
+Error given from pythong transaction.py:
+Traceback (most recent call last):
+  File "transaction.py", line 12, in <module>
+    from cryptography.hazmat import serialization
+ImportError: cannot import name 'serialization' from 'cryptography.hazmat' (C:\Users\Student.FIS01L114LT37\AppData\Roaming\Python\Python38\site-packages\cryptography\hazmat\__init__.py)
+		
+
+---------------------------------------------------------------- Part 2 ---------------------------------------------------------------- 
+
+For testing and demonstration:
+
+7. fake-net.js
+8. driver.js
+9. tcp-miner.js
