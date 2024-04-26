@@ -30,6 +30,7 @@ class Client:
         self.last_confirmed_block = None
         self.last_block = None
         self.key_pair = key_pair
+        self.available_gold = 1000  # Placeholder value for testing
 
         if Blockchain.has_instance():
             bc = Blockchain.get_instance()
@@ -37,6 +38,8 @@ class Client:
 
         if starting_block:
             self.set_genesis_block(starting_block)
+
+        self.net.register(self)  # Register with the network
 
     def set_genesis_block(self, starting_block):
         if self.last_block:
@@ -74,4 +77,12 @@ class Client:
         self.nonce += 1
         self.net.broadcast(Blockchain.POST_TRANSACTION, tx)
         return tx
+        
+    def receive_message(self, msg, data):
+        # Placeholder for message handling logic
+        print(f"Received {msg}: {data}")
+
+    def emit(self, event, data):
+        # Directly use net's sendMessage for this client's address
+        self.net.send_message(self.address, event, data)
 

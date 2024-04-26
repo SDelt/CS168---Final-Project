@@ -34,10 +34,11 @@ class Miner(Client):
         pause_point = self.current_block.proof + self.mining_rounds
         while self.current_block.proof < pause_point:
             if self.current_block.has_valid_proof():
-                print(f'found proof for block {self.current_block.chain_length}: {self.current_block.proof}')
+                print(f'Found proof for block {self.current_block.chain_length}: {self.current_block.proof}')
                 self.announce_proof()
                 self.receive_block(self.current_block)
-                break
+                if one_and_done:
+                    break
             self.current_block.proof += 1
         if not one_and_done:
             time.sleep(0)  # Simulating asynchronous operation with a timeout
@@ -47,14 +48,11 @@ class Miner(Client):
         self.net.broadcast(Blockchain.PROOF_FOUND, self.current_block)
 
     def receive_block(self, block):
-        block = super().receive_block(block)
-        if block is None:
-            return None
         if self.current_block and block.chain_length >= self.current_block.chain_length:
-            print('cutting over to new chain.')
+            print('Cutting over to new chain.')
             tx_set = self.sync_transactions(block)
             self.start_new_search(tx_set)
-        return block
+        super().receive_block(block)
 
     def sync_transactions(self, new_block):
         common_block = self.find_common_ancestor(self.current_block, new_block)
@@ -82,3 +80,4 @@ class Miner(Client):
         tx = Blockchain.make_transaction(tx)
         self.transactions.add(tx)
         return True
+

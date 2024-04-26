@@ -9,7 +9,7 @@ Total Output Calculation: Computes the sum of all outputs plus the transaction f
 
 
 import json
-from cryptography.hazmat import serialization
+from cryptography.hazmat.primitives import serialization
 from utils import hash, sign, verify_signature, address_matches_key
 
 class Transaction:
@@ -61,4 +61,4 @@ transaction = Transaction(
 transaction.sign('private_key_example')
 print("Transaction ID:", transaction.id)
 print("Is signature valid?", transaction.valid_signature())
-print("Total output:", transaction.total_output())
+print("Total output:", transaction.total_total_output())

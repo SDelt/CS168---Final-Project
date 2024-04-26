@@ -32,51 +32,6 @@ TotalMilliseconds : 281.9512
 
 """
 
-"""
-
-class BlockClass:
-    def __init__(self):
-        pass  # Implement required methods and properties
-
-class TransactionClass:
-    def __init__(self):
-        pass  # Implement required methods and properties
-
-class ClientClass:
-    def __init__(self):
-        self.address = "address"
-        self.name = "name"
-    
-    def set_genesis_block(self, block):
-        pass  # Implement logic here
-
-class MinerClass:
-    def __init__(self):
-        pass  # Implement required methods and properties
-    
-    def start_mining(self):
-        pass  # Implement logic here
-
-# Now you can create an instance of Blockchain with these classes
-config = {
-    'block_class': BlockClass,
-    'transaction_class': TransactionClass,
-    'client_class': ClientClass,
-    'miner_class': MinerClass
-}
-
-blockchain_instance = Blockchain.create_instance(config)
-block = Block('miner_address', blockchain_instance)
-print(block.serialize())
-print(block.hash_val())
-
-
-Expected output:
-{"chain_length": 0, "coinbase_reward": 25, "prev_block_hash": null, "reward_addr": "miner_address", "timestamp": 1714109567, "transactions": []}
-c2e94979705dd7462e07c94da07f9c128fe57e2bc63fd398bfa09974a39d26e4
-
-"""
-
 import time
 import json
 from blockchain import Blockchain

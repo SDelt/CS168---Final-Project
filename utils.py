@@ -9,77 +9,99 @@ Mnemonic Key Generation: Utilizes the mnemonic Python library to generate seeds 
 
 
 import hashlib
-import base64
-from cryptography.hazmat.primitives import hashes
-from cryptography.hazmat.primitives.asymmetric import padding, rsa
-from cryptography.hazmat.primitives.serialization import Encoding, PrivateFormat, PublicFormat, NoEncryption, BestAvailableEncryption
-from cryptography.hazmat.primitives.asymmetric import utils as crypto_utils
+import json
+from cryptography.hazmat.primitives import hashes, serialization
+from cryptography.hazmat.primitives.asymmetric import rsa, padding
+from cryptography.hazmat.backends import default_backend
 from mnemonic import Mnemonic
+from cryptography.exceptions import InvalidSignature
+
+# CRYPTO settings
+HASH_ALG = hashlib.sha256
+SIG_ALG = 'sha256'
 
 def hash(s, encoding='hex'):
-    hasher = hashlib.sha256()
-    hasher.update(s.encode('utf-8'))
+    hash_obj = HASH_ALG()
+    hash_obj.update(s.encode())
     if encoding == 'hex':
-        return hasher.hexdigest()
+        return hash_obj.hexdigest()
     elif encoding == 'base64':
-        return base64.b64encode(hasher.digest()).decode('utf-8')
+        return hash_obj.digest().encode('base64').decode()
 
 def generate_keypair_from_mnemonic(mnemonic, password):
-    mnemo = Mnemonic('english')
-    seed = mnemo.to_seed(mnemonic, passphrase=password)
+    mnemonic_obj = Mnemonic("english")
+    seed = mnemonic_obj.to_seed(mnemonic, passphrase=password)
     private_key = rsa.generate_private_key(
         public_exponent=65537,
-        key_size=2048,
+        key_size=512,
         backend=default_backend()
     )
     public_key = private_key.public_key()
+    pem_private_key = private_key.private_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PrivateFormat.PKCS8,
+        encryption_algorithm=serialization.NoEncryption()
+    )
+    pem_public_key = public_key.public_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PublicFormat.SubjectPublicKeyInfo
+    )
     return {
-        'public': public_key.public_bytes(encoding=Encoding.PEM, format=PublicFormat.SubjectPublicKeyInfo).decode('utf-8'),
-        'private': private_key.private_bytes(encoding=Encoding.PEM, format=PrivateFormat.TraditionalOpenSSL, encryption_algorithm=NoEncryption()).decode('utf-8')
+        'public': pem_public_key.decode(),
+        'private': pem_private_key.decode()
     }
 
 def generate_keypair():
     private_key = rsa.generate_private_key(
         public_exponent=65537,
-        key_size=2048,
+        key_size=512,
         backend=default_backend()
     )
     public_key = private_key.public_key()
+    pem_private_key = private_key.private_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PrivateFormat.PKCS8,
+        encryption_algorithm=serialization.NoEncryption()
+    )
+    pem_public_key = public_key.public_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PublicFormat.SubjectPublicKeyInfo
+    )
     return {
-        'public': public_key.public_bytes(encoding=Encoding.PEM, format=PublicFormat.SubjectPublicKeyInfo).decode('utf-8'),
-        'private': private_key.private_bytes(encoding=Encoding.PEM, format=PrivateFormat.TraditionalOpenSSL, encryption_algorithm=NoEncryption()).decode('utf-8')
+        'public': pem_public_key.decode(),
+        'private': pem_private_key.decode()
     }
 
 def sign(priv_key_pem, msg):
     private_key = serialization.load_pem_private_key(
-        priv_key_pem.encode('utf-8'),
+        priv_key_pem.encode(),
         password=None,
         backend=default_backend()
     )
-    signer = private_key.signer(
+    signer = private_key.sign(
+        json.dumps(msg).encode() if isinstance(msg, dict) else str(msg).encode(),
         padding.PSS(
             mgf=padding.MGF1(hashes.SHA256()),
             salt_length=padding.PSS.MAX_LENGTH
         ),
         hashes.SHA256()
     )
-    signer.update(msg.encode('utf-8'))
-    return base64.b64encode(signer.finalize()).decode('utf-8')
+    return signer.finalize().hex()
 
 def verify_signature(pub_key_pem, msg, sig):
     public_key = serialization.load_pem_public_key(
-        pub_key_pem.encode('utf-8'),
+        pub_key_pem.encode(),
         backend=default_backend()
     )
-    verifier = public_key.verifier(
-        base64.b64decode(sig),
+    verifier = public_key.verify(
+        bytes.fromhex(sig),
+        json.dumps(msg).encode() if isinstance(msg, dict) else str(msg).encode(),
         padding.PSS(
             mgf=padding.MGF1(hashes.SHA256()),
             salt_length=padding.PSS.MAX_LENGTH
         ),
         hashes.SHA256()
     )
-    verifier.update(msg.encode('utf-8'))
     try:
         verifier.verify()
         return True
