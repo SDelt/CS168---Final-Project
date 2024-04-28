@@ -1,50 +1,17 @@
-Elijah:
-- All I am doing is running driver.py and fixing errors that it brings up
-- once driver.py works, we need to compare its output to driver.js
-- id driver.py matches driver.js then we should try to implement tcp-miner.js
+Current issue:
 
-Modules/add-ons:
-- pip install cryptography
-- pip install mnemonic
-- pip install bip39
-
-How to get runtime:
-- Measure-Command {python file_name.py}
-
-Current error when running driver.py:
-
+Starting simulation. This may take a moment...
 Traceback (most recent call last):
-  File "driver.py", line 5, in <module>
-    from transaction import Transaction
-  File "C:\CS 168\Project\transaction.py", line 61, in <module>
-    transaction.sign('private_key_example')
-  File "C:\CS 168\Project\transaction.py", line 38, in sign
-    self.sig = sign(priv_key, self.id)
-  File "C:\CS 168\Project\utils.py", line 76, in sign
-    private_key = serialization.load_pem_private_key(
-  File "C:\Users\Student.FIS01L114LT37\AppData\Roaming\Python\Python38\site-packages\cryptography\hazmat\backends\openssl\backend.py", line 494, in _handle_key_loading_error
-    raise ValueError(
-ValueError: ('Could not deserialize key data. The data may be in an incorrect format, it may be encrypted with an unsupported algorithm, or it may be an unsupported key type 
-(e.g. EC curves with explicit parameters).', [<OpenSSLError(code=503841036, lib=60, reason=524556, reason_text=unsupported)>])
-
----------------------------------------------------------------- Part 1 ---------------------------------------------------------------- 
-
-* = converted
-$ = completed
-
-Functionality files:
-
-1. *block.js
-2. *blockchain.js
-3. *client.js
-4. *miner.js
-5. *transaction.js (error in serialization)
-6. *utils.js
-
----------------------------------------------------------------- Part 2 ---------------------------------------------------------------- 
-
-For testing and demonstration:
-
-7. fake-net.js
-8. driver.js
-9. tcp-miner.js
+  File "driver.py", line 8, in <module>
+    bc = Blockchain.create_instance({
+  File "C:\CS 168\Project\blockchain.py", line 47, in create_instance
+    cls.instance = cls(**cfg)
+  File "C:\CS 168\Project\blockchain.py", line 43, in __init__
+    self.initialize_clients(clients)
+  File "C:\CS 168\Project\blockchain.py", line 65, in initialize_clients
+    client = self.client_class(name=client_cfg['name'], password=client_cfg.get('password'), net=self.net)
+  File "C:\CS 168\Project\client.py", line 27, in __init__
+    self.net.register(self)  # Register with the network
+  File "C:\CS 168\Project\fakeNet.py", line 13, in register
+    self.clients[client.address] = client
+AttributeError: 'Client' object has no attribute 'address'
