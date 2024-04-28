@@ -188,12 +188,15 @@ class Blockchain:
 
         for client_cfg in clients:
             print(f"Adding client {client_cfg['name']}")
+            
             if client_cfg.get('mining'):
                 client = self.miner_class(name=client_cfg['name'], password=client_cfg.get('password', f"{client_cfg['name']}_pswd"), net=self.net, mining_rounds=client_cfg['mining_rounds'])
                 client.generate_address(self.mnemonic)
                 self.miners.append(client)
             else:
+                print("Error is here in blockchain.py line 197, the following HERE does not print")
                 client = self.client_class(name=client_cfg['name'], password=client_cfg.get('password', f"{client_cfg['name']}_pswd"), net=self.net)
+                print("HERE")
                 client.generate_address(self.mnemonic)
 
             self.client_address_map[client.address] = client

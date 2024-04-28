@@ -35,12 +35,18 @@ class Transaction:
         return hash('TX' + json.dumps(transaction_data, sort_keys=True))
 
     def sign(self, priv_key):
-        self.sig = sign(priv_key, self.id)
+        try:
+            print("Self: ", self)
+            print("Private key: ", priv_key)
+            self.sig = sign(priv_key, self.id)
+        except Exception as e:
+            print("Error occurred while signing the transaction:", e)
 
     def valid_signature(self):
         if not self.sig or not address_matches_key(self.from_address, self.pub_key):
             return False
         return verify_signature(self.pub_key, self.id, self.sig)
+
 
     def sufficient_funds(self, block):
         available_balance = block.balance_of(self.from_address)
@@ -50,15 +56,16 @@ class Transaction:
         return sum(output['amount'] for output in self.outputs) + self.fee
 
 # Example Usage
-transaction = Transaction(
-    from_address='1234567890abcdef',
-    nonce=1,
-    pub_key='abcdef1234567890',
-    outputs=[{'amount': 100, 'address': 'fedcba0987654321'}],
-    fee=10
-)
+# transaction = Transaction(
+    # from_address='1234567890abcdef',
+    # nonce=1,
+    # pub_key='abcdef1234567890',
+    # outputs=[{'amount': 100, 'address': 'fedcba0987654321'}],
+    # fee=10
+# )
 
-transaction.sign('private_key_example')
-print("Transaction ID:", transaction.id)
-print("Is signature valid?", transaction.valid_signature())
-print("Total output:", transaction.total_total_output())
+# transaction.sign('private_key_example')
+# print("Transaction ID:", transaction.id)
+# print("Is signature valid?", transaction.valid_signature())
+# print("Total output:", transaction.total_output())
+

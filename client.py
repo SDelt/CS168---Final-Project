@@ -18,7 +18,7 @@ from blockchain import Blockchain
 from utils import generate_keypair_from_mnemonic, calc_address
 
 class Client:
-    def __init__(self, name, password, net, starting_block=None, key_pair=None):
+    def __init__(self, name, password, net, starting_block=None, key_pair=None, mnemonic=None):
         self.net = net
         self.name = name
         self.password = password if password else f"{self.name}_pswd"
@@ -32,9 +32,8 @@ class Client:
         self.key_pair = key_pair
         self.available_gold = 1000  # Placeholder value for testing
 
-        if Blockchain.has_instance():
-            bc = Blockchain.get_instance()
-            self.generate_address(bc.mnemonic)
+        if mnemonic:
+            self.generate_address(mnemonic)
 
         if starting_block:
             self.set_genesis_block(starting_block)
