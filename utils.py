@@ -12,18 +12,30 @@ import base64
 from bip_utils import Bip39MnemonicGenerator, Bip39SeedGenerator
 
 def hash(s, encoding='hex'):
-    h = hashlib.sha256(s.encode())
+    if isinstance(s, str):  # Check if s is a string
+        s_bytes = s.encode()
+    elif isinstance(s, bytes):  # Check if s is already in bytes format
+        s_bytes = s
+    else:
+        raise TypeError("Input must be a string or bytes")
+
+    h = hashlib.sha256(s_bytes)
     if encoding == 'hex':
         return h.hexdigest()
     elif encoding == 'base64':
         return base64.b64encode(h.digest()).decode()
+    else:
+        raise ValueError("Encoding must be 'hex' or 'base64'")
+
 
 def generate_keypair_from_mnemonic(mnemonic, password):
-    seed = Bip39SeedGenerator(mnemonic).Generate(password).ToHex()
-    key = RSA.generate(512, randfunc=lambda n: seed[:n])  # Simplification
+    seed_bytes = Bip39SeedGenerator(mnemonic).Generate(password)
+    seed_hex = seed_bytes.hex()
+    key = RSA.generate(2048)  # You might want to consider a stronger key size
     private_key = key.export_key('PEM')
     public_key = key.publickey().export_key('PEM')
     return {'public': public_key, 'private': private_key}
+
 
 def generate_keypair():
     key = RSA.generate(512)

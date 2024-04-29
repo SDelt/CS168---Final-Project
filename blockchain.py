@@ -50,11 +50,20 @@ class Blockchain:
 
     @staticmethod
     def make_genesis():
-        g = Blockchain.instance.make_block()
+        # Create a new block with appropriate arguments
+        g = Blockchain.instance.make_block('some_reward_address', None)  
         g.balances = Blockchain.instance.initial_balances.copy()
         for client in Blockchain.instance.clients:
             client.set_genesis_block(g)
         return g
+
+    def get_clients(self, *names):
+        clients = []
+        for name in names:
+            client = self.client_name_map.get(name)
+            if client:
+                clients.append(client)
+        return clients
 
     def initialize_clients(self, clients_config):
         for client_cfg in clients_config:

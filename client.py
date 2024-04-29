@@ -17,6 +17,7 @@ class Client:
         self.last_confirmed_block = None
         self.last_block = None
         self.key_pair = None
+        self.address = None
         
         if mnemonic:
             self.generate_address(mnemonic)
@@ -61,15 +62,25 @@ class Client:
     def generate_address(self, mnemonic):
         if not mnemonic:
             raise Exception("Mnemonic not set")
-        self.key_pair = generate_keypair_from_mnemonic(mnemonic, self.password)
-        self.address = calc_address(self.key_pair.public)
+        key_pair = generate_keypair_from_mnemonic(mnemonic, self.password)
+        self.key_pair = key_pair
+        self.address = calc_address(key_pair['public'])
         logging.info(f"{self.name}'s address is: {self.address}")
+
+    def show_all_balances(self):
+        print(f"Balances for {self.name}:")
+        for address, balance in self.blocks[-1].balances.items():
+            print(f"Address: {address}, Balance: {balance}")
 
     def receive_message(self, msg, data):
         print(f"Received {msg}: {data}")
 
     def emit(self, event, data):
         self.net.send_message(self.address, event, data)
+     
+    def set_genesis_block(self, block):
+        self.last_confirmed_block = block
+        self.last_block = block
 
 
 

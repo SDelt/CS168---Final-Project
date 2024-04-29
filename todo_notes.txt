@@ -1,17 +1,12 @@
 Current issue:
 
 Starting simulation. This may take a moment...
+Initial balances:
+Balances for Alice:
 Traceback (most recent call last):
-  File "driver.py", line 8, in <module>
-    bc = Blockchain.create_instance({
-  File "C:\CS 168\Project\blockchain.py", line 47, in create_instance
-    cls.instance = cls(**cfg)
-  File "C:\CS 168\Project\blockchain.py", line 43, in __init__
-    self.initialize_clients(clients)
-  File "C:\CS 168\Project\blockchain.py", line 65, in initialize_clients
-    client = self.client_class(name=client_cfg['name'], password=client_cfg.get('password'), net=self.net)
-  File "C:\CS 168\Project\client.py", line 27, in __init__
-    self.net.register(self)  # Register with the network
-  File "C:\CS 168\Project\fakeNet.py", line 13, in register
-    self.clients[client.address] = client
-AttributeError: 'Client' object has no attribute 'address'
+  File "C:\Users\Johnson\Desktop\School\cs168\CS168-Final-Project-main\CS168-Final-Project-main\driver.py", line 22, in <module>
+    alice.show_all_balances()
+  File "C:\Users\Johnson\Desktop\School\cs168\CS168-Final-Project-main\CS168-Final-Project-main\client.py", line 72, in show_all_balances
+    for address, balance in self.blocks[-1].balances.items():
+                            ~~~~~~~~~~~^^^^
+KeyError: -1
