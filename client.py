@@ -69,7 +69,13 @@ class Client:
 
     def show_all_balances(self):
         print(f"Balances for {self.name}:")
-        for address, balance in self.blocks[-1].balances.items():
+        if not self.blocks:
+            print("No blocks available yet.")
+            return
+
+        # Access the balances from the last confirmed block
+        last_block = self.last_confirmed_block
+        for address, balance in last_block.balances.items():
             print(f"Address: {address}, Balance: {balance}")
 
     def receive_message(self, msg, data):

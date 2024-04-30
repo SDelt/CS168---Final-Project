@@ -1,12 +1,14 @@
 Current issue:
 
-Starting simulation. This may take a moment...
+Starting simulation.  This may take a moment...
 Initial balances:
 Balances for Alice:
+No blocks available yet.
+Alice is transferring 40 gold to 1zSZD1/IxmY304ryh4mvp/COyUmZLanO7ZwwncT7HjM=
 Traceback (most recent call last):
-  File "C:\Users\Johnson\Desktop\School\cs168\CS168-Final-Project-main\CS168-Final-Project-main\driver.py", line 22, in <module>
-    alice.show_all_balances()
-  File "C:\Users\Johnson\Desktop\School\cs168\CS168-Final-Project-main\CS168-Final-Project-main\client.py", line 72, in show_all_balances
-    for address, balance in self.blocks[-1].balances.items():
-                            ~~~~~~~~~~~^^^^
-KeyError: -1
+  File "C:\Users\Johnson\Desktop\School\cs168\CS168-Final-Project-main\CS168-Final-Project-main\driver.py", line 34, in <module>
+    alice.post_transaction([{"amount": 40, "address": bob.address}])
+  File "C:\Users\Johnson\Desktop\School\cs168\CS168-Final-Project-main\CS168-Final-Project-main\client.py", line 42, in post_transaction
+    fee = Blockchain.DEFAULT_TX_FEE
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'Blockchain' has no attribute 'DEFAULT_TX_FEE'

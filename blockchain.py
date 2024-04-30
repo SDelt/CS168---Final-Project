@@ -1,4 +1,5 @@
-import threading
+import time
+import sys
 from block import Block
 from transaction import Transaction
 from client import Client
@@ -91,6 +92,15 @@ class Blockchain:
             return o
         return self.transaction_class(o)
 
+    def start(self, ms=None, f=None):
+        for miner in self.miners:
+            miner.initialize()
+
+        if ms is not None:
+            time.sleep(ms / 1000)
+            if f is not None:
+                f()
+                
     @staticmethod
     def get_instance():
         if Blockchain.instance is None:
