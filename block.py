@@ -105,4 +105,3 @@ class Block:
 
     def contains(self, tx):
         return tx.id in self.transactions
-

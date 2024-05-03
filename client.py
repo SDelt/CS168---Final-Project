@@ -12,7 +12,7 @@ class Client:
         self.nonce = 0
         self.pending_outgoing_transactions = {}
         self.pending_received_transactions = {}
-        self.blocks = {}
+        self.blocks = []
         self.pending_blocks = {}
         self.last_confirmed_block = None
         self.last_block = None
@@ -68,15 +68,17 @@ class Client:
         logging.info(f"{self.name}'s address is: {self.address}")
 
     def show_all_balances(self):
-        print(f"Balances for {self.name}:")
+        from blockchain import Blockchain  # Import locally to prevent circular imports
+        print("file: client    line: 72     msg: Blocks array in show_all_balances: ", self.blocks)  # Debugging line
         if not self.blocks:
             print("No blocks available yet.")
             return
 
-        # Access the balances from the last confirmed block
         last_block = self.last_confirmed_block
-        for address, balance in last_block.balances.items():
-            print(f"Address: {address}, Balance: {balance}")
+        blockchain = Blockchain.get_instance()
+        for client in blockchain.clients:
+            balance = last_block.balance_of(client.address)
+            print(f"Name: {client.name}, Balance: {balance}")
 
     def receive_message(self, msg, data):
         print(f"Received {msg}: {data}")
@@ -85,8 +87,9 @@ class Client:
         self.net.send_message(self.address, event, data)
      
     def set_genesis_block(self, block):
+        print("file: client     line: 90   msg: Genesis Block in set_genesis_block ", block)
         self.last_confirmed_block = block
         self.last_block = block
-
+        self.blocks.append(block)
 
 

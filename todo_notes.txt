@@ -1,14 +1,21 @@
-Current issue:
+Modifications:
+- fixed the "show_all_balances" function in clients.py
+	- The issue was, the gensis block was being passed from blockchain.py::set_genesis_block->client.py::set_genesis_block
+	  however, the genesis block was never being saves to the clients own blocks
 
-Starting simulation.  This may take a moment...
-Initial balances:
-Balances for Alice:
-No blocks available yet.
-Alice is transferring 40 gold to 1zSZD1/IxmY304ryh4mvp/COyUmZLanO7ZwwncT7HjM=
+Changes made in client.py:
+	- Added self.blocks.append(block) to set_genesis_block
+	- Changes blocks from a dict to a array/list	blocks = []
+
+Change made in blockchain.py and client.py:
+	- Added some debugging statements that print for client initialization and genesis block
+
+Current error:
+
+Alice is transferring 40 gold to qC8KOwVYQop3qRUZ7piWVSuiOe0ufroHknxoGZIkxAQ=
 Traceback (most recent call last):
-  File "C:\Users\Johnson\Desktop\School\cs168\CS168-Final-Project-main\CS168-Final-Project-main\driver.py", line 34, in <module>
+  File "driver.py", line 34, in <module>
     alice.post_transaction([{"amount": 40, "address": bob.address}])
-  File "C:\Users\Johnson\Desktop\School\cs168\CS168-Final-Project-main\CS168-Final-Project-main\client.py", line 42, in post_transaction
+  File "C:\CS 168\Project\client.py", line 42, in post_transaction
     fee = Blockchain.DEFAULT_TX_FEE
-          ^^^^^^^^^^^^^^^^^^^^^^^^^
 AttributeError: type object 'Blockchain' has no attribute 'DEFAULT_TX_FEE'

@@ -68,4 +68,3 @@ class Transaction:
 # print("Transaction ID:", transaction.id)
 # print("Is signature valid?", transaction.valid_signature())
 # print("Total output:", transaction.total_output())
-
