@@ -1,7 +1,12 @@
 import time
+import threading
 from blockchain import Blockchain
 from miner import Miner
 from fakeNet import FakeNet
+
+def show_final_balances():
+    print("Final balances, from Alice's perspective:")
+    alice.show_all_balances()
 
 print("Starting simulation.  This may take a moment...")
 
@@ -29,6 +34,10 @@ alice.show_all_balances()
 # the code will terminate and show the final balances from Alice's perspective.
 bc.start(8000)
 
+# Schedule to show final balances after 8 seconds
+timer = threading.Timer(8, show_final_balances)
+timer.start()
+
 # Alice transfers some money to Bob.
 print(f"Alice is transferring 40 gold to {bob.address}")
 alice.post_transaction([{"amount": 40, "address": bob.address}])
@@ -50,5 +59,6 @@ bc.register(donald)
 donald.initialize()
 
 time.sleep(9)  # Waiting for the blockchain to finish mining
+timer.cancel()  # Cancel the timer if the final balances are already shown
 print("Final balances, from Alice's perspective:")
 alice.show_all_balances()
