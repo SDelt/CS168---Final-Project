@@ -1,9 +1,3 @@
-'''
-Modules needed:
-- pip install cryptography
-- pip install pycryptodome bip-utils 
-'''
-
 import hashlib
 from Crypto.PublicKey import RSA
 from Crypto.Signature import pkcs1_15

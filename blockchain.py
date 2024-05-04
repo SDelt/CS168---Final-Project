@@ -19,6 +19,11 @@ POW_BASE_TARGET = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 
 class Blockchain:
     instance = None
+    
+    MISSING_BLOCK = "MISSING_BLOCK"
+    POST_TRANSACTION = "POST_TRANSACTION"
+    PROOF_FOUND = "PROOF_FOUND"
+    START_MINING = "START_MINING"
 
     def __init__(self, block_class=Block, transaction_class=Transaction, client_class=Client, miner_class=Miner,
                  pow_leading_zeroes=POW_LEADING_ZEROES, coinbase_reward=COINBASE_AMT_ALLOWED,
@@ -93,10 +98,32 @@ class Blockchain:
     def make_block(self, *args):
         return self.block_class(*args)
 
-    def make_transaction(self, o):
-        if isinstance(o, self.transaction_class):
-            return o
-        return self.transaction_class(o)
+    @staticmethod
+    def make_transaction(*args): # Get the arguments from the client and make an instance of the blockchain
+        bc = Blockchain.get_instance()
+        return bc._make_transaction(*args)
+
+    def _make_transaction(self, *args): # Hanlde the creation of the transaction
+        transaction_data = args[0]  # Extracting the transaction data dictionary from args
+        from_address = transaction_data.get('from')
+        nonce = transaction_data.get('nonce')
+        pub_key = transaction_data.get('pub_key')
+        sig = transaction_data.get('sig')
+        outputs = transaction_data.get('outputs')
+        fee = transaction_data.get('fee', 0)  # Default fee is 0 if not provided
+        data = transaction_data.get('data')
+        
+        if from_address is None or nonce is None or pub_key is None:
+            raise ValueError("Required transaction data is missing.")
+        
+        return self.transaction_class(from_address, nonce, pub_key, sig=sig, outputs=outputs, fee=fee, data=data)
+
+
+    @staticmethod
+    def get_instance():
+        if Blockchain.instance is None:
+            Blockchain.instance = Blockchain()  # Create a new instance if not already created
+        return Blockchain.instance
 
     def start(self, ms=None, f=None):
         for miner in self.miners:
@@ -106,12 +133,6 @@ class Blockchain:
             time.sleep(ms / 1000)
             if f is not None:
                 f()
-                
-    @staticmethod
-    def get_instance():
-        if Blockchain.instance is None:
-            raise Exception("The blockchain has not been initialized.")
-        return Blockchain.instance
 
     @staticmethod
     def has_instance():

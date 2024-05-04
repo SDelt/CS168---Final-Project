@@ -1,6 +1,7 @@
 # Python, did not have a direct equivalent of EventEmitter, we mimiced its behavior using Python's standard libraries
 
 import logging
+import base64
 from utils import generate_keypair_from_mnemonic, calc_address
 import importlib
 
@@ -35,28 +36,40 @@ class Client:
     def available_gold(self):
         pending_spent = sum(tx.total_output() for tx in self.pending_outgoing_transactions.values())
         return self.confirmed_balance - pending_spent
-
+        
     def post_transaction(self, outputs, fee=None):
-        Blockchain = importlib.import_module('blockchain').Blockchain  # Dynamic import
+        from blockchain import Blockchain  # Import locally to prevent circular imports
         if fee is None:
-            fee = Blockchain.DEFAULT_TX_FEE
-        total_payments = sum(amount for _, amount in outputs) + fee
+            # fee = Blockchain.DEFAULT_TX_FEE
+            fee = 1 # value should come from blockchain class, but is not importing correclty, so we harded coded here
+        print("Outputs:", outputs)
+        print("Fee:", fee)
+        total_payments = sum(output['amount'] for output in outputs) + fee
         if total_payments > self.available_gold:
             raise Exception(f"Requested {total_payments}, but account only has {self.available_gold}.")
         return self.post_generic_transaction({'outputs': outputs, 'fee': fee})
 
     def post_generic_transaction(self, tx_data):
-        Blockchain = importlib.import_module('blockchain').Blockchain  # Dynamic import
+        from blockchain import Blockchain
         tx = Blockchain.make_transaction({
             'from': self.address,
             'nonce': self.nonce,
-            'pub_key': self.key_pair.public,
+            'pub_key': self.key_pair['public'],
             **tx_data
         })
-        tx.sign(self.key_pair.private)
+        tx.sign(self.key_pair['private'])
         self.pending_outgoing_transactions[tx.id] = tx
         self.nonce += 1
-        self.net.broadcast(Blockchain.POST_TRANSACTION, tx)
+        tx_dict = {
+            'from': tx.from_address,
+            'nonce': tx.nonce,
+            'pub_key': tx.pub_key,
+            'sig': tx.sig,
+            'fee': tx.fee,
+            'outputs': tx.outputs,
+            'data': tx.data
+        }
+        self.net.broadcast(Blockchain.POST_TRANSACTION, tx_dict)
         return tx
 
     def generate_address(self, mnemonic):
@@ -64,7 +77,7 @@ class Client:
             raise Exception("Mnemonic not set")
         key_pair = generate_keypair_from_mnemonic(mnemonic, self.password)
         self.key_pair = key_pair
-        self.address = calc_address(key_pair['public'])
+        self.address = calc_address(self.key_pair['public'])
         logging.info(f"{self.name}'s address is: {self.address}")
 
     def show_all_balances(self):

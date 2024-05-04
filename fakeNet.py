@@ -18,10 +18,13 @@ class FakeNet:
 
     def send_message(self, address, msg, o):
         if not isinstance(o, dict):
-            raise ValueError(f"Expecting a dictionary, but got a {type(o).__name__}")
-        
+            # Convert Transaction object to dictionary
+            o_dict = o.__dict__
+        else:
+            o_dict = o
+            
         # Serializing/deserializing the object to prevent cheating in single threaded mode.
-        o2 = json.loads(json.dumps(o))
+        o2 = json.loads(json.dumps(o_dict))
         
         client = self.clients.get(address)
         

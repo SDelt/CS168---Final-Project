@@ -1,13 +1,3 @@
-"""
-Notes:
-
-Transaction ID Calculation: Uses a combination of transaction attributes to generate a unique hash
-Signature Handling: The sign method signs the transaction using a private key, and the valid_signature method checks if the signature is valid with the corresponding public key
-Funds Verification: The sufficient_funds method checks if the transaction amount, including the fee, can be covered by the current balance in the provided block
-Total Output Calculation: Computes the sum of all outputs plus the transaction fee, which represents the total gold going out in the transaction
-"""
-
-
 import json
 from cryptography.hazmat.primitives import serialization
 from utils import hash, sign, verify_signature, address_matches_key
@@ -27,12 +17,14 @@ class Transaction:
         transaction_data = {
             'from': self.from_address,
             'nonce': self.nonce,
-            'pubKey': self.pub_key,
+            'pub_key': self.pub_key.decode('utf-8'),  # Convert bytes to string
             'outputs': self.outputs,
             'fee': self.fee,
             'data': self.data
         }
         return hash('TX' + json.dumps(transaction_data, sort_keys=True))
+
+
 
     def sign(self, priv_key):
         try:
@@ -54,17 +46,3 @@ class Transaction:
 
     def total_output(self):
         return sum(output['amount'] for output in self.outputs) + self.fee
-
-# Example Usage
-# transaction = Transaction(
-    # from_address='1234567890abcdef',
-    # nonce=1,
-    # pub_key='abcdef1234567890',
-    # outputs=[{'amount': 100, 'address': 'fedcba0987654321'}],
-    # fee=10
-# )
-
-# transaction.sign('private_key_example')
-# print("Transaction ID:", transaction.id)
-# print("Is signature valid?", transaction.valid_signature())
-# print("Total output:", transaction.total_output())
