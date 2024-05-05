@@ -24,12 +24,8 @@ class Transaction:
         }
         return hash('TX' + json.dumps(transaction_data, sort_keys=True))
 
-
-
     def sign(self, priv_key):
         try:
-            print("Self: ", self)
-            print("Private key: ", priv_key)
             self.sig = sign(priv_key, self.id)
         except Exception as e:
             print("Error occurred while signing the transaction:", e)

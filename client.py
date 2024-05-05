@@ -26,8 +26,6 @@ class Client:
         if starting_block:
             self.set_genesis_block(starting_block)
 
-        self.net.register(self)  # Register with the network
-
     @property
     def confirmed_balance(self):
         return self.last_confirmed_block.balance_of(self.address)
@@ -42,8 +40,6 @@ class Client:
         if fee is None:
             # fee = Blockchain.DEFAULT_TX_FEE
             fee = 1 # value should come from blockchain class, but is not importing correclty, so we harded coded here
-        print("Outputs:", outputs)
-        print("Fee:", fee)
         total_payments = sum(output['amount'] for output in outputs) + fee
         if total_payments > self.available_gold:
             raise Exception(f"Requested {total_payments}, but account only has {self.available_gold}.")
@@ -82,7 +78,6 @@ class Client:
 
     def show_all_balances(self):
         from blockchain import Blockchain  # Import locally to prevent circular imports
-        print("file: client    line: 72     msg: Blocks array in show_all_balances: ", self.blocks)  # Debugging line
         if not self.blocks:
             print("No blocks available yet.")
             return
@@ -94,13 +89,12 @@ class Client:
             print(f"Name: {client.name}, Balance: {balance}")
 
     def receive_message(self, msg, data):
-        print(f"Received {msg}: {data}")
+        print(f"Received {msg} for {self.name}")
 
     def emit(self, event, data):
         self.net.send_message(self.address, event, data)
      
     def set_genesis_block(self, block):
-        print("file: client     line: 90   msg: Genesis Block in set_genesis_block ", block)
         self.last_confirmed_block = block
         self.last_block = block
         self.blocks.append(block)

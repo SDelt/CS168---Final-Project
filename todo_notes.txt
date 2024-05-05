@@ -1,3 +1,80 @@
+--------------------------------------------- 5/5/2024 ---------------------------------------------
+
+Need to fix:
+- Need to fix adding the later miner donald to the blockchain and fakeNet
+- Need to make sure that post_transaction is actually deducting the amount from alice and giving it to bob
+- Cannot hard code DEFAULT_TX_FEE in client.py forever, just doing so to fix other bugs. Most likely and import error
+
+Current error:
+Traceback (most recent call last):
+  File "driver.py", line 37, in <module>
+    bc.start(8000)
+  File "C:\CS 168\Project\blockchain.py", line 128, in start
+    miner.initialize()
+  File "C:\CS 168\Project\miner.py", line 13, in initialize
+    self.start_new_search()
+  File "C:\CS 168\Project\miner.py", line 19, in start_new_search
+    self.current_block = Blockchain.make_block(self.address, self.last_block)
+  File "C:\CS 168\Project\blockchain.py", line 97, in make_block
+    return self.block_class(*args)
+AttributeError: 'str' object has no attribute 'block_class'
+
+Changes in fakeNet:
+- Conversions to correct parameters types in send_message
+    
+        # Convert bytes data to string
+        if isinstance(o, bytes):
+            o = o.decode('utf-8')
+
+        # Convert non-dict objects to dictionary
+        if not isinstance(o, dict):
+            o_dict = o.__dict__
+        else:
+            o_dict = o
+
+        # Convert bytes data in pub_key to string (assuming it's in PEM format)
+        if 'pub_key' in o_dict and isinstance(o_dict['pub_key'], bytes):
+            o_dict['pub_key'] = o_dict['pub_key'].decode('utf-8')
+
+        # Serializing/deserializing the object to prevent cheating in single threaded mode.
+        o2 = json.loads(json.dumps(o_dict))
+
+        client = self.clients.get(address)
+
+        def deliver():
+            if client:
+                client.receive_message(msg, o2)
+
+        delay = random.random() * self.message_delay_max
+        if random.random() > self.chance_message_fails:
+            Timer(delay / 1000, deliver).start()
+
+Changes in client.py:
+- By accident, the clients were being registered to fakeNet when being initialized in client.py
+	- Removed this so registrations occurs only in blockchain.py
+
+Changes in blockchain.py:
+- We had to adjust the client registration to the blockchain and to fakeNet 
+	- Forgot to include miner case
+	- Also had to work around rest parameters in JS, by adding a pointers for clients
+
+    def register_clients(self, amount, *clients):
+        for client in clients:
+            self.client_address_map[client.address] = client
+            if client.name:
+                self.client_name_map[client.name] = client
+            self.clients.append(client)
+            if isinstance(client, Miner):
+                self.miners.append(client)
+            client.net = self.net
+            # Clients address does print correctly if we use print("Client Address in Blockchain: ", client.address)
+            self.net.register(client)
+            self.initial_balances[client.address] = amount
+			
+- Adjusted the way parameters are sent in intialized_clients to register_clients
+	
+	self.register_clients(client, client_cfg['amount']) <---> self.register_clients(client_cfg['amount'], client) 
+
 --------------------------------------------- 5/4/2024 ---------------------------------------------
 
 Need to fix:
@@ -101,5 +178,28 @@ Traceback (most recent call last):
     fee = Blockchain.DEFAULT_TX_FEE
 AttributeError: type object 'Blockchain' has no attribute 'DEFAULT_TX_FEE'
 
-------------------------------------------------------------------------------------------------------
+------------------------------------------  Dubbing lines that worked successfully ------------------------------------------------------------
 
+print("File: Client     Line: 45    Outputs:", outputs)
+print("File: Client     Line: 46    Fee:", fee)
+print("file: client    line: 83     msg: Blocks array in show_all_balances: ", self.blocks)  # Debugging line
+print("file: client     line: 90   msg: Genesis Block in set_genesis_block ", block)
+
+
+print("File: Transaction	Line: 28	Self: ", self)
+print("File: Transaction	Line: 29	Private key: ", priv_key)
+
+print("file: blockchain    line: 64     msg: Genesis block: ", g)
+print("file: blockchain.py   line: 81/82   msg: below")
+print(f"Initialized client: {client.name}, Address: {client.address}, Amount: {client_cfg['amount']}")
+print("file: blockchain		Line 91:	Client Address in Blockchain: ", client.address)
+
+print("File: FakeNet	Line: 16	Client Address in FakeNet", address)
+print("File: FakeNet    Line: 20    Self: ", self)
+print("")
+print("File: FakeNet    Line: 22   Address: ", address)
+print("")
+print("File: FakeNet    Line: 24    Msg: ", msg)
+print("")
+print("File: FakeNet    Line: 20    O: ", o)
+print("")

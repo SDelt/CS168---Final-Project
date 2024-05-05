@@ -60,7 +60,6 @@ class Blockchain:
         g = Blockchain.instance.make_block('some_reward_address', None)  
         g.balances = Blockchain.instance.initial_balances.copy()
         for client in Blockchain.instance.clients:
-            print("file: blockchain    line: 58     msg: Genesis block: ", g)
             client.set_genesis_block(g)
         return g
 
@@ -80,20 +79,19 @@ class Blockchain:
             else:
                 client = self.client_class(name=client_cfg['name'], password=client_cfg.get('password'), net=self.net)
             client.generate_address(self.mnemonic)
-            self.register_client(client, client_cfg['amount'])
-            
-            # Print client details for debugging
-            print("file: blockchain.py   line: 81/82   msg: below")
-            print(f"Initialized client: {client.name}, Address: {client.address}, Amount: {client_cfg['amount']}")
+            self.register_clients(client_cfg['amount'], client)
 
-
-    def register_client(self, client, amount):
-        self.client_address_map[client.address] = client
-        if client.name:
-            self.client_name_map[client.name] = client
-        self.clients.append(client)
-        self.net.register(client)
-        self.initial_balances[client.address] = amount
+    def register_clients(self, amount, *clients):
+        for client in clients:
+            self.client_address_map[client.address] = client
+            if client.name:
+                self.client_name_map[client.name] = client
+            self.clients.append(client)
+            if isinstance(client, Miner):
+                self.miners.append(client)
+            client.net = self.net
+            self.net.register(client)
+            self.initial_balances[client.address] = amount
 
     def make_block(self, *args):
         return self.block_class(*args)

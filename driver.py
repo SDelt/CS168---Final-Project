@@ -26,9 +26,11 @@ bc = Blockchain.create_instance({
 # Get Alice and Bob
 alice, bob = bc.get_clients('Alice', 'Bob')
 
-# Showing the initial balances from Alice's perspective, for no particular reason.
+# Showing the initial balances from Alice's perspective, for no particular reason
+print("")
 print("Initial balances:")
 alice.show_all_balances()
+print("")
 
 # The miners will start mining blocks when start is called.  After 8 seconds,
 # the code will terminate and show the final balances from Alice's perspective.
@@ -55,7 +57,7 @@ donald = Miner({
 print()
 print("***Starting a late-to-the-party miner***")
 print()
-bc.register(donald)
+bc.initialize_clients(donald)
 donald.initialize()
 
 time.sleep(9)  # Waiting for the blockchain to finish mining
