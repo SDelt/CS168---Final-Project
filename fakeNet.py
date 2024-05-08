@@ -12,40 +12,42 @@ class FakeNet:
         for client in client_list:
             self.clients[client.address] = client
         
-    def broadcast(self, msg, o):
-        for address in self.clients:
-            self.send_message(address, msg, o)
+    def broadcast(self, address, msg, tx=None):
+        if address in self.clients:  # Check if address is in the clients map
+            self.send_message(self.clients[address], msg, tx)
 
-    def send_message(self, address, msg, o):
-    
-        # Convert bytes data to string
-        if isinstance(o, bytes):
-            o = o.decode('utf-8')
-
-        # Convert non-dict objects to dictionary
-        if not isinstance(o, dict):
-            o_dict = o.__dict__
-        else:
-            o_dict = o
-
-        # Convert bytes data in pub_key to string (assuming it's in PEM format)
-        if 'pub_key' in o_dict and isinstance(o_dict['pub_key'], bytes):
-            o_dict['pub_key'] = o_dict['pub_key'].decode('utf-8')
-
-        # Serializing/deserializing the object to prevent cheating in single threaded mode.
-        o2 = json.loads(json.dumps(o_dict))
-
-        client = self.clients.get(address)
+    def send_message(self, address, msg, tx=None):
+        from client import Client
+        from miner import Miner
+        from blockchain import Blockchain
 
         def deliver():
-            if client:
-                client.receive_message(msg, o2)
+            if isinstance(address, Miner):  # Check if address is an instance of Miner
+                if msg == Blockchain.START_MINING:
+                    address.find_proof()
+                elif msg == Blockchain.POST_TRANSACTION:
+                    # self.print_message(msg) 
+                    address.add_transaction(tx)
+                else:
+                    print("Invalid message for Miner:", msg)
+            elif isinstance(address, Client):  # Check if address is an instance of Client
+                if msg == Blockchain.POST_TRANSACTION:
+                    # self.print_message(msg)
+                    address.makeDeductions(tx)
+                else:
+                    print("Invalid message for Client:", msg)
+            else:
+                print("Address type not recognized:", type(address))
 
         delay = random.random() * self.message_delay_max
         if random.random() > self.chance_message_fails:
             Timer(delay / 1000, deliver).start()
 
-
-
     def recognizes(self, client):
         return client.address in self.clients
+    
+    @staticmethod    
+    def print_message(msg):
+        print("")
+        print("*** ", msg, " ***")
+        print("")

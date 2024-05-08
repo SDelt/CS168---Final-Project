@@ -13,7 +13,7 @@ class Client:
         self.nonce = 0
         self.pending_outgoing_transactions = {}
         self.pending_received_transactions = {}
-        self.blocks = []
+        self.blocks = {}
         self.pending_blocks = {}
         self.last_confirmed_block = None
         self.last_block = None
@@ -36,10 +36,14 @@ class Client:
         return self.confirmed_balance - pending_spent
         
     def post_transaction(self, outputs, fee=None):
-        from blockchain import Blockchain  # Import locally to prevent circular imports
+    
+        print("")
+        print("Outputs: ", outputs)
+        print("")
+    
+        from blockchain import Blockchain
         if fee is None:
-            # fee = Blockchain.DEFAULT_TX_FEE
-            fee = 1 # value should come from blockchain class, but is not importing correclty, so we harded coded here
+            fee = Blockchain.get_default_tx_fee()
         total_payments = sum(output['amount'] for output in outputs) + fee
         if total_payments > self.available_gold:
             raise Exception(f"Requested {total_payments}, but account only has {self.available_gold}.")
@@ -65,8 +69,14 @@ class Client:
             'outputs': tx.outputs,
             'data': tx.data
         }
+        
+        print("HERE")
         self.net.broadcast(Blockchain.POST_TRANSACTION, tx_dict)
         return tx
+    
+    # Here we need to figure out a function to deduct the total_payments from the clients self.available_gold
+    # then once subtracting that amount, total_payments - fee should then be payed to the address it is meant to be sent to
+    # fakeNet shoul call here if address type is of client and msg is POST_TRANSACTION
 
     def generate_address(self, mnemonic):
         if not mnemonic:
@@ -97,6 +107,49 @@ class Client:
     def set_genesis_block(self, block):
         self.last_confirmed_block = block
         self.last_block = block
-        self.blocks.append(block)
+        self.blocks[block.id] = block  # Assign the block to the dictionary using its ID as the key
+
+    def set_last_confirmed(self):
+        self.last_confirmed_block = self.last_block    
+        
+    def receive_block(self, block):
+        from blockchain import Blockchain  # Import locally to prevent circular imports
+        block = Blockchain.deserialize_block(block)
+
+        if block.id in self.blocks:
+            return None
+
+        if not block.has_valid_proof() and not block.is_genesis_block():
+            self.log(f"Block {block.id} does not have a valid proof.")
+            return None
+
+        prev_block = self.blocks.get(block.prev_block_hash)
+        if not prev_block and not block.is_genesis_block():
+            stuck_blocks = self.pending_blocks.get(block.prev_block_hash, set())
+
+            if not stuck_blocks:
+                self.request_missing_block(block)
+            stuck_blocks.add(block)
+            self.pending_blocks[block.prev_block_hash] = stuck_blocks
+            return None
+
+        if not block.is_genesis_block():
+            success = block.rerun(prev_block)
+            if not success:
+                return None
+
+        self.blocks[block.id] = block
+
+        if self.last_block.chain_length < block.chain_length:
+            self.last_block = block
+            self.set_last_confirmed()
+
+        unstuck_blocks = self.pending_blocks.pop(block.id, [])
+        for b in unstuck_blocks:
+            self.log(f"Processing unstuck block {b.id}")
+            self.receive_block(b)
+
+        return block
+
 
 

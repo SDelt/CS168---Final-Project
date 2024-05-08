@@ -1,3 +1,16 @@
+--------------------------------------------- 5/7/2024 ---------------------------------------------
+
+Major overhaul for project realized the communication to fakeNet was only suitable for clients who were not miners. 
+So we revisted our emit functions in client and miner. We also revisted the broadcast and send_message functions in fakeNet
+
+We also realized that miners.py and clients.py were not actually changing the values of the users. So we had a big overhaul.
+now the miners are effecitvely looking for a proof of work and are attempint to cut to new blocks. However, somewhere in
+receive_blocks in miner.py, we are getting stuck in an infinite loop
+
+After we fix the infinite loop, we can then move to making sure that the client to client transaction of coins actually adjust
+the values of each client. Bobs address is passed into post_transaction when alice calls it. So I beleive we can use that address of
+bobs, to find him on the blockchain utilizing blockchain.get_clients, and then adjust his values
+
 --------------------------------------------- 5/5/2024 ---------------------------------------------
 
 Need to fix:
@@ -179,20 +192,22 @@ Traceback (most recent call last):
 AttributeError: type object 'Blockchain' has no attribute 'DEFAULT_TX_FEE'
 
 ------------------------------------------  Dubbing lines that worked successfully ------------------------------------------------------------
+print("File: Block      Line: 26       Msg: Inside init")
+
+print("file: Blockchain    line: 64     msg: Genesis block: ", g)
+print("file: Blockchain   line: 81/82   msg: below")
+print(f"Initialized client: {client.name}, Address: {client.address}, Amount: {client_cfg['amount']}")
+print("file: Blockchain		Line: 91 	Client Address in Blockchain: ", client.address)
+print("file: Blockchain		Line: 92	Miner: ", client.name)
+print("File: Blockchain     Line: 170       Msg: Mining initialize") # used when we had getter functions
+
 
 print("File: Client     Line: 45    Outputs:", outputs)
 print("File: Client     Line: 46    Fee:", fee)
-print("file: client    line: 83     msg: Blocks array in show_all_balances: ", self.blocks)  # Debugging line
-print("file: client     line: 90   msg: Genesis Block in set_genesis_block ", block)
+print("file: Client    line: 83     msg: Blocks array in show_all_balances: ", self.blocks)  # Debugging line
+print("file: Client     line: 90   msg: Genesis Block in set_genesis_block ", block)
 
-
-print("File: Transaction	Line: 28	Self: ", self)
-print("File: Transaction	Line: 29	Private key: ", priv_key)
-
-print("file: blockchain    line: 64     msg: Genesis block: ", g)
-print("file: blockchain.py   line: 81/82   msg: below")
-print(f"Initialized client: {client.name}, Address: {client.address}, Amount: {client_cfg['amount']}")
-print("file: blockchain		Line 91:	Client Address in Blockchain: ", client.address)
+print("File: Driver     Line: 38    Msg: Start the mining in blockchain")
 
 print("File: FakeNet	Line: 16	Client Address in FakeNet", address)
 print("File: FakeNet    Line: 20    Self: ", self)
@@ -203,3 +218,11 @@ print("File: FakeNet    Line: 24    Msg: ", msg)
 print("")
 print("File: FakeNet    Line: 20    O: ", o)
 print("")
+
+print("file: Miner		Line: 10	inside init")
+print("File: Miner      Line: 13       Msg: Inside miner intialize")    
+print("File: Miner      Line: 19       Msg: Inside miner start_new_search")    
+
+
+print("File: Transaction	Line: 28	Self: ", self)
+print("File: Transaction	Line: 29	Private key: ", priv_key)

@@ -34,6 +34,7 @@ print("")
 
 # The miners will start mining blocks when start is called.  After 8 seconds,
 # the code will terminate and show the final balances from Alice's perspective.
+print("File: Driver     Line: 38    Msg: Start the mining in blockchain")
 bc.start(8000)
 
 # Schedule to show final balances after 8 seconds
@@ -57,7 +58,7 @@ donald = Miner({
 print()
 print("***Starting a late-to-the-party miner***")
 print()
-bc.initialize_clients(donald)
+bc.initialize_clients(donald) # error here
 donald.initialize()
 
 time.sleep(9)  # Waiting for the blockchain to finish mining

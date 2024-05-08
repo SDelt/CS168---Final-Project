@@ -7,11 +7,13 @@ class Miner(Client):
         super().__init__(name, password, net, starting_block, key_pair)
         self.mining_rounds = mining_rounds
         self.transactions = set()
-
+    
     def initialize(self):
         from blockchain import Blockchain
         self.start_new_search()
-        threading.Timer(0, self.emit, args=(Blockchain.START_MINING,)).start()
+        
+        self.emit(Blockchain.START_MINING)
+        self.emit(Blockchain.POST_TRANSACTION)
 
     def start_new_search(self, tx_set=None):
         from blockchain import Blockchain
@@ -23,6 +25,7 @@ class Miner(Client):
 
         for tx in self.transactions:
             self.current_block.add_transaction(tx, self)
+            
         self.transactions.clear()
         self.current_block.proof = 0
 
@@ -37,7 +40,7 @@ class Miner(Client):
                 break
             self.current_block.proof += 1
         if not one_and_done:
-            threading.Timer(0, self.emit, args=(Blockchain.START_MINING,)).start()
+            self.emit(Blockchain.START_MINING)
 
     def announce_proof(self):
         from blockchain import Blockchain
@@ -45,6 +48,7 @@ class Miner(Client):
 
     def receive_block(self, s):
         b = super().receive_block(s)
+        
         if b is None:
             return None
 
@@ -54,6 +58,7 @@ class Miner(Client):
             self.start_new_search(tx_set)
 
         return b
+
 
     def sync_transactions(self, nb):
         cb = self.current_block
@@ -77,9 +82,11 @@ class Miner(Client):
         return cb_txs - nb_txs
 
     def add_transaction(self, tx):
-        from blockchain import Blockchain
-        tx = Blockchain.make_transaction(tx)
-        self.transactions.add(tx)
+        if tx is not None:
+            from blockchain import Blockchain
+            tx = Blockchain.make_transaction(tx)
+            self.transactions.add(tx)
+
 
     def post_transaction(self, *args):
         tx = super().post_transaction(*args)
@@ -87,3 +94,10 @@ class Miner(Client):
 
     def log(self, message):
         print(f"{self.name}: {message}")
+        
+    def emit(self, msg):
+        self.net.broadcast(self.address, msg)
+        
+    def receive_message(self, msg, data):
+        print(f"Received {msg} for {self.name}")
+

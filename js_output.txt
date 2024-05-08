@@ -1,0 +1,498 @@
+Starting simulation.  This may take a moment...
+Adding client Alice
+Alice's address is: Lxg2iphzBnwEffNmiA3Fr6P4D3lOkW0HEonVNswGNKA=
+Adding client Bob
+Bob's address is: iAZrYb2URc8yUF5Qk7J2t3b1JmYSnh6SN2AqQCVPZOU=
+Adding client Charlie
+Charlie's address is: sjCLJbAy3X2a2WGOaGirobQ4gKAfOxulvMxytavWh3E=
+Adding client Minnie
+Minnie's address is: nDeIIZE9ymU1Vc5sB408w1RsAcdZHHGkbLSK0uIcd3c=
+Adding client Mickey
+Mickey's address is: vlOaYmq5C6HjEkgMmf0bGcHI89j6qzKfG6MTQ71fhmk=
+Initial balances:
+Alice: Showing balances:
+    Lxg2iphzBnwEffNmiA3Fr6P4D3lOkW0HEonVNswGNKA= (Alice): 233
+    iAZrYb2URc8yUF5Qk7J2t3b1JmYSnh6SN2AqQCVPZOU= (Bob): 99
+    sjCLJbAy3X2a2WGOaGirobQ4gKAfOxulvMxytavWh3E= (Charlie): 67
+    nDeIIZE9ymU1Vc5sB408w1RsAcdZHHGkbLSK0uIcd3c= (Minnie): 400
+    vlOaYmq5C6HjEkgMmf0bGcHI89j6qzKfG6MTQ71fhmk= (Mickey): 300
+Alice is transferring 40 gold to iAZrYb2URc8yUF5Qk7J2t3b1JmYSnh6SN2AqQCVPZOU=
+Minnie: found proof for block 1: 28272
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Minnie: found proof for block 2: 47006
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Mickey: Replayed transaction 75d671f1cf5212e724c1a5bd21821594fb9afc03679ebc39f12349e1ac0c8e00.
+Mickey: found proof for block 3: 2145
+Mickey: cutting over to new chain.
+Minnie: cutting over to new chain.
+Minnie: found proof for block 4: 22725
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Minnie: found proof for block 5: 14905
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Minnie: found proof for block 6: 4141
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Minnie: found proof for block 7: 1591
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Mickey: found proof for block 8: 23967
+Mickey: cutting over to new chain.
+Minnie: cutting over to new chain.
+Minnie: found proof for block 9: 5897
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Minnie: found proof for block 10: 23613
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Mickey: found proof for block 11: 3326
+Mickey: cutting over to new chain.
+Minnie: found proof for block 11: 5580
+Minnie: cutting over to new chain.
+Minnie: found proof for block 12: 12254
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald's address is: IIO+/VhNGaPN/Imd6KVzba0eMbDZpQdA+375kuiuFZc=
+
+***Starting a late-to-the-party miner***
+
+Donald: found proof for block 1: 1206
+Donald: cutting over to new chain.
+Mickey: found proof for block 13: 22352
+Mickey: cutting over to new chain.
+Minnie: cutting over to new chain.
+Donald: Asking for missing block: 00015de35ef4f95231c518b18886c861d50c580434d6155bd694dc8708884ae6
+Alice: Providing missing block 00015de35ef4f95231c518b18886c861d50c580434d6155bd694dc8708884ae6
+Bob: Providing missing block 00015de35ef4f95231c518b18886c861d50c580434d6155bd694dc8708884ae6
+Charlie: Providing missing block 00015de35ef4f95231c518b18886c861d50c580434d6155bd694dc8708884ae6
+Minnie: Providing missing block 00015de35ef4f95231c518b18886c861d50c580434d6155bd694dc8708884ae6
+Mickey: Providing missing block 00015de35ef4f95231c518b18886c861d50c580434d6155bd694dc8708884ae6
+Mickey: found proof for block 14: 2406
+Mickey: cutting over to new chain.
+Donald: Asking for missing block: 00009c3c456b1bda453e2b96174ec253607511ff0209352a394f0a4ed8032e3f
+Minnie: cutting over to new chain.
+Donald: Asking for missing block: 000113617ad51f623fadb87cd2854dc086f60cdf0db6d8f47bab8fe4f5909975
+Mickey: found proof for block 15: 1759
+Mickey: cutting over to new chain.
+Alice: Providing missing block 00009c3c456b1bda453e2b96174ec253607511ff0209352a394f0a4ed8032e3f
+Bob: Providing missing block 00009c3c456b1bda453e2b96174ec253607511ff0209352a394f0a4ed8032e3f
+Charlie: Providing missing block 00009c3c456b1bda453e2b96174ec253607511ff0209352a394f0a4ed8032e3f
+Minnie: Providing missing block 00009c3c456b1bda453e2b96174ec253607511ff0209352a394f0a4ed8032e3f
+Mickey: Providing missing block 00009c3c456b1bda453e2b96174ec253607511ff0209352a394f0a4ed8032e3f
+Alice: Providing missing block 000113617ad51f623fadb87cd2854dc086f60cdf0db6d8f47bab8fe4f5909975
+Bob: Providing missing block 000113617ad51f623fadb87cd2854dc086f60cdf0db6d8f47bab8fe4f5909975
+Charlie: Providing missing block 000113617ad51f623fadb87cd2854dc086f60cdf0db6d8f47bab8fe4f5909975
+Minnie: Providing missing block 000113617ad51f623fadb87cd2854dc086f60cdf0db6d8f47bab8fe4f5909975
+Mickey: Providing missing block 000113617ad51f623fadb87cd2854dc086f60cdf0db6d8f47bab8fe4f5909975
+Minnie: cutting over to new chain.
+Donald: Asking for missing block: 0000fa6cf2f8330d59a60fbced50bbc57d9e43c7d0abf8acfc726aadbfbf6a90
+Donald: Asking for missing block: 00004866b353970ceecefae199849a5ab65bd2682a5bddfbe01e326d02f7c48d
+Alice: Providing missing block 0000fa6cf2f8330d59a60fbced50bbc57d9e43c7d0abf8acfc726aadbfbf6a90
+Bob: Providing missing block 0000fa6cf2f8330d59a60fbced50bbc57d9e43c7d0abf8acfc726aadbfbf6a90
+Charlie: Providing missing block 0000fa6cf2f8330d59a60fbced50bbc57d9e43c7d0abf8acfc726aadbfbf6a90
+Minnie: Providing missing block 0000fa6cf2f8330d59a60fbced50bbc57d9e43c7d0abf8acfc726aadbfbf6a90
+Mickey: Providing missing block 0000fa6cf2f8330d59a60fbced50bbc57d9e43c7d0abf8acfc726aadbfbf6a90
+Alice: Providing missing block 00004866b353970ceecefae199849a5ab65bd2682a5bddfbe01e326d02f7c48d
+Bob: Providing missing block 00004866b353970ceecefae199849a5ab65bd2682a5bddfbe01e326d02f7c48d
+Charlie: Providing missing block 00004866b353970ceecefae199849a5ab65bd2682a5bddfbe01e326d02f7c48d
+Minnie: Providing missing block 00004866b353970ceecefae199849a5ab65bd2682a5bddfbe01e326d02f7c48d
+Mickey: Providing missing block 00004866b353970ceecefae199849a5ab65bd2682a5bddfbe01e326d02f7c48d
+Donald: Asking for missing block: 000091547fad0f75ef6ccd3d725f92a5e71b41fda691183a8e28f74796db722f
+Alice: Providing missing block 000091547fad0f75ef6ccd3d725f92a5e71b41fda691183a8e28f74796db722f
+Bob: Providing missing block 000091547fad0f75ef6ccd3d725f92a5e71b41fda691183a8e28f74796db722f
+Charlie: Providing missing block 000091547fad0f75ef6ccd3d725f92a5e71b41fda691183a8e28f74796db722f
+Minnie: Providing missing block 000091547fad0f75ef6ccd3d725f92a5e71b41fda691183a8e28f74796db722f
+Mickey: Providing missing block 000091547fad0f75ef6ccd3d725f92a5e71b41fda691183a8e28f74796db722f
+Donald: Asking for missing block: 000139df930398d1563d8810d2f9646821b6643ccaec9b8c65c4ed5d738374b7
+Alice: Providing missing block 000139df930398d1563d8810d2f9646821b6643ccaec9b8c65c4ed5d738374b7
+Bob: Providing missing block 000139df930398d1563d8810d2f9646821b6643ccaec9b8c65c4ed5d738374b7
+Charlie: Providing missing block 000139df930398d1563d8810d2f9646821b6643ccaec9b8c65c4ed5d738374b7
+Minnie: Providing missing block 000139df930398d1563d8810d2f9646821b6643ccaec9b8c65c4ed5d738374b7
+Mickey: Providing missing block 000139df930398d1563d8810d2f9646821b6643ccaec9b8c65c4ed5d738374b7
+Donald: Asking for missing block: 0001afe06074d76e5e6e2a5274e44583dc16ea69b8c6b23b085d0dab7a7267cc
+Alice: Providing missing block 0001afe06074d76e5e6e2a5274e44583dc16ea69b8c6b23b085d0dab7a7267cc
+Bob: Providing missing block 0001afe06074d76e5e6e2a5274e44583dc16ea69b8c6b23b085d0dab7a7267cc
+Charlie: Providing missing block 0001afe06074d76e5e6e2a5274e44583dc16ea69b8c6b23b085d0dab7a7267cc
+Minnie: Providing missing block 0001afe06074d76e5e6e2a5274e44583dc16ea69b8c6b23b085d0dab7a7267cc
+Mickey: Providing missing block 0001afe06074d76e5e6e2a5274e44583dc16ea69b8c6b23b085d0dab7a7267cc
+Donald: Asking for missing block: 0000f613f6df841cf37aba5fa505cd40f24e7c0a3245e68dca4cfc0a230c550e
+Minnie: found proof for block 16: 18361
+Minnie: cutting over to new chain.
+Alice: Providing missing block 0000f613f6df841cf37aba5fa505cd40f24e7c0a3245e68dca4cfc0a230c550e
+Bob: Providing missing block 0000f613f6df841cf37aba5fa505cd40f24e7c0a3245e68dca4cfc0a230c550e
+Charlie: Providing missing block 0000f613f6df841cf37aba5fa505cd40f24e7c0a3245e68dca4cfc0a230c550e
+Minnie: Providing missing block 0000f613f6df841cf37aba5fa505cd40f24e7c0a3245e68dca4cfc0a230c550e
+Mickey: Providing missing block 0000f613f6df841cf37aba5fa505cd40f24e7c0a3245e68dca4cfc0a230c550e
+Donald: found proof for block 2: 54021
+Donald: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: Asking for missing block: 00000b3fa0607b7ea676088c5f4d8cd15818654a9300b497d7a2e7d51246e734
+Donald: Asking for missing block: 00003661445f1404a047763a47fedc66667c37018decd1162f54e00f396fa6d2
+Alice: Providing missing block 00000b3fa0607b7ea676088c5f4d8cd15818654a9300b497d7a2e7d51246e734
+Bob: Providing missing block 00000b3fa0607b7ea676088c5f4d8cd15818654a9300b497d7a2e7d51246e734
+Charlie: Providing missing block 00000b3fa0607b7ea676088c5f4d8cd15818654a9300b497d7a2e7d51246e734
+Minnie: Providing missing block 00000b3fa0607b7ea676088c5f4d8cd15818654a9300b497d7a2e7d51246e734
+Mickey: Providing missing block 00000b3fa0607b7ea676088c5f4d8cd15818654a9300b497d7a2e7d51246e734
+Alice: Providing missing block 00003661445f1404a047763a47fedc66667c37018decd1162f54e00f396fa6d2
+Bob: Providing missing block 00003661445f1404a047763a47fedc66667c37018decd1162f54e00f396fa6d2
+Charlie: Providing missing block 00003661445f1404a047763a47fedc66667c37018decd1162f54e00f396fa6d2
+Minnie: Providing missing block 00003661445f1404a047763a47fedc66667c37018decd1162f54e00f396fa6d2
+Mickey: Providing missing block 00003661445f1404a047763a47fedc66667c37018decd1162f54e00f396fa6d2
+Donald: Asking for missing block: 000176863f36a2d5ea5d1109562e79d19ead0f073e27855fb993cfcf691fa16a
+Alice: Providing missing block 000176863f36a2d5ea5d1109562e79d19ead0f073e27855fb993cfcf691fa16a
+Bob: Providing missing block 000176863f36a2d5ea5d1109562e79d19ead0f073e27855fb993cfcf691fa16a
+Charlie: Providing missing block 000176863f36a2d5ea5d1109562e79d19ead0f073e27855fb993cfcf691fa16a
+Minnie: Providing missing block 000176863f36a2d5ea5d1109562e79d19ead0f073e27855fb993cfcf691fa16a
+Mickey: Providing missing block 000176863f36a2d5ea5d1109562e79d19ead0f073e27855fb993cfcf691fa16a
+Donald: Asking for missing block: 000060ce0d1ccb6a10d586da7fccdab286805a912d16437215f450920c6afa43
+Minnie: found proof for block 17: 10882
+Minnie: cutting over to new chain.
+Alice: Providing missing block 000060ce0d1ccb6a10d586da7fccdab286805a912d16437215f450920c6afa43
+Bob: Providing missing block 000060ce0d1ccb6a10d586da7fccdab286805a912d16437215f450920c6afa43
+Charlie: Providing missing block 000060ce0d1ccb6a10d586da7fccdab286805a912d16437215f450920c6afa43
+Minnie: Providing missing block 000060ce0d1ccb6a10d586da7fccdab286805a912d16437215f450920c6afa43
+Mickey: Providing missing block 000060ce0d1ccb6a10d586da7fccdab286805a912d16437215f450920c6afa43
+Mickey: cutting over to new chain.
+Donald: Asking for missing block: 0001f356c2e5a9536eb6a374b134b1fb0cfd288018c041621d801636c53c38cd
+Donald: Asking for missing block: 000095b9d7bb3acc9c9985dbe7a7dae8fdcc2c547959fdcf72a16bf2ab125fb8
+Alice: Providing missing block 0001f356c2e5a9536eb6a374b134b1fb0cfd288018c041621d801636c53c38cd
+Bob: Providing missing block 0001f356c2e5a9536eb6a374b134b1fb0cfd288018c041621d801636c53c38cd
+Charlie: Providing missing block 0001f356c2e5a9536eb6a374b134b1fb0cfd288018c041621d801636c53c38cd
+Minnie: Providing missing block 0001f356c2e5a9536eb6a374b134b1fb0cfd288018c041621d801636c53c38cd
+Mickey: Providing missing block 0001f356c2e5a9536eb6a374b134b1fb0cfd288018c041621d801636c53c38cd
+Alice: Providing missing block 000095b9d7bb3acc9c9985dbe7a7dae8fdcc2c547959fdcf72a16bf2ab125fb8
+Bob: Providing missing block 000095b9d7bb3acc9c9985dbe7a7dae8fdcc2c547959fdcf72a16bf2ab125fb8
+Charlie: Providing missing block 000095b9d7bb3acc9c9985dbe7a7dae8fdcc2c547959fdcf72a16bf2ab125fb8
+Minnie: Providing missing block 000095b9d7bb3acc9c9985dbe7a7dae8fdcc2c547959fdcf72a16bf2ab125fb8
+Mickey: Providing missing block 000095b9d7bb3acc9c9985dbe7a7dae8fdcc2c547959fdcf72a16bf2ab125fb8
+Donald: Asking for missing block: 0001078ecfd6649c12a3d57a394d66553bfb7da4a5132423ff57885b45790bd6
+Alice: Providing missing block 0001078ecfd6649c12a3d57a394d66553bfb7da4a5132423ff57885b45790bd6
+Bob: Providing missing block 0001078ecfd6649c12a3d57a394d66553bfb7da4a5132423ff57885b45790bd6
+Charlie: Providing missing block 0001078ecfd6649c12a3d57a394d66553bfb7da4a5132423ff57885b45790bd6
+Minnie: Providing missing block 0001078ecfd6649c12a3d57a394d66553bfb7da4a5132423ff57885b45790bd6
+Mickey: Providing missing block 0001078ecfd6649c12a3d57a394d66553bfb7da4a5132423ff57885b45790bd6
+Donald: Processing unstuck block 000095b9d7bb3acc9c9985dbe7a7dae8fdcc2c547959fdcf72a16bf2ab125fb8
+Donald: Processing unstuck block 000060ce0d1ccb6a10d586da7fccdab286805a912d16437215f450920c6afa43
+Donald: Processing unstuck block 000176863f36a2d5ea5d1109562e79d19ead0f073e27855fb993cfcf691fa16a
+Donald: Processing unstuck block 00003661445f1404a047763a47fedc66667c37018decd1162f54e00f396fa6d2
+Donald: Processing unstuck block 0000f613f6df841cf37aba5fa505cd40f24e7c0a3245e68dca4cfc0a230c550e
+Donald: Processing unstuck block 0001afe06074d76e5e6e2a5274e44583dc16ea69b8c6b23b085d0dab7a7267cc
+Donald: Processing unstuck block 000139df930398d1563d8810d2f9646821b6643ccaec9b8c65c4ed5d738374b7
+Donald: Processing unstuck block 000091547fad0f75ef6ccd3d725f92a5e71b41fda691183a8e28f74796db722f
+Donald: Processing unstuck block 00004866b353970ceecefae199849a5ab65bd2682a5bddfbe01e326d02f7c48d
+Donald: Processing unstuck block 00009c3c456b1bda453e2b96174ec253607511ff0209352a394f0a4ed8032e3f
+Donald: Processing unstuck block 00015de35ef4f95231c518b18886c861d50c580434d6155bd694dc8708884ae6
+Donald: Processing unstuck block 000113617ad51f623fadb87cd2854dc086f60cdf0db6d8f47bab8fe4f5909975
+Donald: Processing unstuck block 0000fa6cf2f8330d59a60fbced50bbc57d9e43c7d0abf8acfc726aadbfbf6a90
+Donald: Processing unstuck block 00000b3fa0607b7ea676088c5f4d8cd15818654a9300b497d7a2e7d51246e734
+Donald: Processing unstuck block 0001f356c2e5a9536eb6a374b134b1fb0cfd288018c041621d801636c53c38cd
+Donald: Processing unstuck block 00000c96701563d7fe6d495ba43257b2f76f999f221bd765f72f85a942efc33b
+Donald: cutting over to new chain.
+Donald: Processing unstuck block 0001f356c2e5a9536eb6a374b134b1fb0cfd288018c041621d801636c53c38cd
+Donald: Processing unstuck block 0001f356c2e5a9536eb6a374b134b1fb0cfd288018c041621d801636c53c38cd
+Donald: Processing unstuck block 0001f356c2e5a9536eb6a374b134b1fb0cfd288018c041621d801636c53c38cd
+Donald: Processing unstuck block 0001f356c2e5a9536eb6a374b134b1fb0cfd288018c041621d801636c53c38cd
+Donald: Processing unstuck block 0001f356c2e5a9536eb6a374b134b1fb0cfd288018c041621d801636c53c38cd
+Donald: Processing unstuck block 00000b3fa0607b7ea676088c5f4d8cd15818654a9300b497d7a2e7d51246e734
+Donald: Processing unstuck block 00000b3fa0607b7ea676088c5f4d8cd15818654a9300b497d7a2e7d51246e734
+Donald: Processing unstuck block 00000b3fa0607b7ea676088c5f4d8cd15818654a9300b497d7a2e7d51246e734
+Donald: Processing unstuck block 00000b3fa0607b7ea676088c5f4d8cd15818654a9300b497d7a2e7d51246e734
+Donald: Processing unstuck block 00000b3fa0607b7ea676088c5f4d8cd15818654a9300b497d7a2e7d51246e734
+Donald: Processing unstuck block 0000fa6cf2f8330d59a60fbced50bbc57d9e43c7d0abf8acfc726aadbfbf6a90
+Donald: Processing unstuck block 0000fa6cf2f8330d59a60fbced50bbc57d9e43c7d0abf8acfc726aadbfbf6a90
+Donald: Processing unstuck block 0000fa6cf2f8330d59a60fbced50bbc57d9e43c7d0abf8acfc726aadbfbf6a90
+Donald: Processing unstuck block 0000fa6cf2f8330d59a60fbced50bbc57d9e43c7d0abf8acfc726aadbfbf6a90
+Donald: Processing unstuck block 0000fa6cf2f8330d59a60fbced50bbc57d9e43c7d0abf8acfc726aadbfbf6a90
+Donald: Processing unstuck block 000113617ad51f623fadb87cd2854dc086f60cdf0db6d8f47bab8fe4f5909975
+Donald: Processing unstuck block 000113617ad51f623fadb87cd2854dc086f60cdf0db6d8f47bab8fe4f5909975
+Donald: Processing unstuck block 000113617ad51f623fadb87cd2854dc086f60cdf0db6d8f47bab8fe4f5909975
+Donald: Processing unstuck block 000113617ad51f623fadb87cd2854dc086f60cdf0db6d8f47bab8fe4f5909975
+Donald: Processing unstuck block 000113617ad51f623fadb87cd2854dc086f60cdf0db6d8f47bab8fe4f5909975
+Donald: Processing unstuck block 00015de35ef4f95231c518b18886c861d50c580434d6155bd694dc8708884ae6
+Donald: Processing unstuck block 00015de35ef4f95231c518b18886c861d50c580434d6155bd694dc8708884ae6
+Donald: Processing unstuck block 00015de35ef4f95231c518b18886c861d50c580434d6155bd694dc8708884ae6
+Donald: Processing unstuck block 00015de35ef4f95231c518b18886c861d50c580434d6155bd694dc8708884ae6
+Donald: Processing unstuck block 00009c3c456b1bda453e2b96174ec253607511ff0209352a394f0a4ed8032e3f
+Donald: Processing unstuck block 00009c3c456b1bda453e2b96174ec253607511ff0209352a394f0a4ed8032e3f
+Donald: Processing unstuck block 00009c3c456b1bda453e2b96174ec253607511ff0209352a394f0a4ed8032e3f
+Donald: Processing unstuck block 00009c3c456b1bda453e2b96174ec253607511ff0209352a394f0a4ed8032e3f
+Donald: Processing unstuck block 00004866b353970ceecefae199849a5ab65bd2682a5bddfbe01e326d02f7c48d
+Donald: Processing unstuck block 00004866b353970ceecefae199849a5ab65bd2682a5bddfbe01e326d02f7c48d
+Donald: Processing unstuck block 00004866b353970ceecefae199849a5ab65bd2682a5bddfbe01e326d02f7c48d
+Donald: Processing unstuck block 00004866b353970ceecefae199849a5ab65bd2682a5bddfbe01e326d02f7c48d
+Donald: Processing unstuck block 000091547fad0f75ef6ccd3d725f92a5e71b41fda691183a8e28f74796db722f
+Donald: Processing unstuck block 000091547fad0f75ef6ccd3d725f92a5e71b41fda691183a8e28f74796db722f
+Donald: Processing unstuck block 000091547fad0f75ef6ccd3d725f92a5e71b41fda691183a8e28f74796db722f
+Donald: Processing unstuck block 000091547fad0f75ef6ccd3d725f92a5e71b41fda691183a8e28f74796db722f
+Donald: Processing unstuck block 000139df930398d1563d8810d2f9646821b6643ccaec9b8c65c4ed5d738374b7
+Donald: Processing unstuck block 000139df930398d1563d8810d2f9646821b6643ccaec9b8c65c4ed5d738374b7
+Donald: Processing unstuck block 000139df930398d1563d8810d2f9646821b6643ccaec9b8c65c4ed5d738374b7
+Donald: Processing unstuck block 000139df930398d1563d8810d2f9646821b6643ccaec9b8c65c4ed5d738374b7
+Donald: Processing unstuck block 0001afe06074d76e5e6e2a5274e44583dc16ea69b8c6b23b085d0dab7a7267cc
+Donald: Processing unstuck block 0001afe06074d76e5e6e2a5274e44583dc16ea69b8c6b23b085d0dab7a7267cc
+Donald: Processing unstuck block 0001afe06074d76e5e6e2a5274e44583dc16ea69b8c6b23b085d0dab7a7267cc
+Donald: Processing unstuck block 0001afe06074d76e5e6e2a5274e44583dc16ea69b8c6b23b085d0dab7a7267cc
+Donald: Processing unstuck block 0000f613f6df841cf37aba5fa505cd40f24e7c0a3245e68dca4cfc0a230c550e
+Donald: Processing unstuck block 0000f613f6df841cf37aba5fa505cd40f24e7c0a3245e68dca4cfc0a230c550e
+Donald: Processing unstuck block 0000f613f6df841cf37aba5fa505cd40f24e7c0a3245e68dca4cfc0a230c550e
+Donald: Processing unstuck block 0000f613f6df841cf37aba5fa505cd40f24e7c0a3245e68dca4cfc0a230c550e
+Donald: Processing unstuck block 00003661445f1404a047763a47fedc66667c37018decd1162f54e00f396fa6d2
+Donald: Processing unstuck block 00003661445f1404a047763a47fedc66667c37018decd1162f54e00f396fa6d2
+Donald: Processing unstuck block 00003661445f1404a047763a47fedc66667c37018decd1162f54e00f396fa6d2
+Donald: Processing unstuck block 00003661445f1404a047763a47fedc66667c37018decd1162f54e00f396fa6d2
+Donald: Processing unstuck block 000176863f36a2d5ea5d1109562e79d19ead0f073e27855fb993cfcf691fa16a
+Donald: Processing unstuck block 000176863f36a2d5ea5d1109562e79d19ead0f073e27855fb993cfcf691fa16a
+Donald: Processing unstuck block 000176863f36a2d5ea5d1109562e79d19ead0f073e27855fb993cfcf691fa16a
+Donald: Processing unstuck block 000176863f36a2d5ea5d1109562e79d19ead0f073e27855fb993cfcf691fa16a
+Donald: Processing unstuck block 000060ce0d1ccb6a10d586da7fccdab286805a912d16437215f450920c6afa43
+Donald: Processing unstuck block 000060ce0d1ccb6a10d586da7fccdab286805a912d16437215f450920c6afa43
+Donald: Processing unstuck block 000060ce0d1ccb6a10d586da7fccdab286805a912d16437215f450920c6afa43
+Donald: Processing unstuck block 000060ce0d1ccb6a10d586da7fccdab286805a912d16437215f450920c6afa43
+Donald: Processing unstuck block 000095b9d7bb3acc9c9985dbe7a7dae8fdcc2c547959fdcf72a16bf2ab125fb8
+Donald: Processing unstuck block 000095b9d7bb3acc9c9985dbe7a7dae8fdcc2c547959fdcf72a16bf2ab125fb8
+Donald: Processing unstuck block 000095b9d7bb3acc9c9985dbe7a7dae8fdcc2c547959fdcf72a16bf2ab125fb8
+Donald: Processing unstuck block 000095b9d7bb3acc9c9985dbe7a7dae8fdcc2c547959fdcf72a16bf2ab125fb8
+Donald: found proof for block 18: 2920
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Minnie: found proof for block 19: 1763
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: cutting over to new chain.
+Donald: found proof for block 20: 46178
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Minnie: found proof for block 21: 1263
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: cutting over to new chain.
+Mickey: found proof for block 22: 7009
+Mickey: cutting over to new chain.
+Minnie: cutting over to new chain.
+Donald: cutting over to new chain.
+Donald: found proof for block 23: 10065
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: found proof for block 24: 4011
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Mickey: found proof for block 25: 62
+Mickey: cutting over to new chain.
+Minnie: cutting over to new chain.
+Donald: cutting over to new chain.
+Donald: found proof for block 26: 6015
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: found proof for block 27: 364
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: found proof for block 28: 14123
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Minnie: found proof for block 29: 2326
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: cutting over to new chain.
+Donald: found proof for block 30: 564
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Minnie: found proof for block 31: 2881
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: cutting over to new chain.
+Minnie: found proof for block 32: 2118
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: cutting over to new chain.
+Donald: found proof for block 33: 5092
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: found proof for block 34: 20380
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: found proof for block 35: 759
+Donald: cutting over to new chain.
+Minnie: found proof for block 35: 1534
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Mickey: found proof for block 36: 5452
+Mickey: cutting over to new chain.
+Donald: found proof for block 36: 11516
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Donald: found proof for block 37: 8589
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: found proof for block 38: 40134
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Minnie: found proof for block 39: 6236
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: cutting over to new chain.
+Donald: found proof for block 40: 10563
+Donald: cutting over to new chain.
+Mickey: found proof for block 40: 9200
+Mickey: cutting over to new chain.
+Minnie: cutting over to new chain.
+Donald: found proof for block 41: 11619
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: found proof for block 42: 31670
+Donald: cutting over to new chain.
+Mickey: found proof for block 42: 20040
+Mickey: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: found proof for block 43: 5606
+Mickey: cutting over to new chain.
+Minnie: cutting over to new chain.
+Donald: cutting over to new chain.
+Donald: found proof for block 44: 400
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: found proof for block 45: 7414
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: found proof for block 46: 8806
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: found proof for block 47: 34002
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: found proof for block 48: 26560
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Minnie: found proof for block 49: 332
+Minnie: cutting over to new chain.   
+Mickey: cutting over to new chain.   
+Donald: cutting over to new chain.   
+Donald: found proof for block 50: 590
+Donald: cutting over to new chain.   
+Minnie: cutting over to new chain.   
+Mickey: cutting over to new chain.   
+Donald: found proof for block 51: 202
+Donald: cutting over to new chain.   
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Mickey: found proof for block 52: 24604
+Mickey: cutting over to new chain.
+Minnie: cutting over to new chain.
+Donald: cutting over to new chain.
+Minnie: found proof for block 53: 15262
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: cutting over to new chain.
+Minnie: found proof for block 54: 1072
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: cutting over to new chain.
+Minnie: found proof for block 55: 11407
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: cutting over to new chain.
+Mickey: found proof for block 56: 7398
+Mickey: cutting over to new chain.
+Minnie: cutting over to new chain.
+Donald: cutting over to new chain.
+Mickey: found proof for block 57: 968
+Mickey: cutting over to new chain.
+Minnie: cutting over to new chain.
+Donald: cutting over to new chain.
+Donald: found proof for block 58: 35936
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: found proof for block 59: 11764
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: found proof for block 60: 5752
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: found proof for block 61: 6345
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Mickey: found proof for block 62: 1482
+Mickey: cutting over to new chain.
+Minnie: cutting over to new chain.
+Donald: cutting over to new chain.
+Mickey: found proof for block 63: 15345
+Mickey: cutting over to new chain.
+Donald: found proof for block 63: 21579
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: found proof for block 64: 15613
+Mickey: cutting over to new chain.
+Minnie: cutting over to new chain.
+Donald: cutting over to new chain.
+Donald: found proof for block 65: 16149
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: found proof for block 66: 11814
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Mickey: found proof for block 67: 4644
+Mickey: cutting over to new chain.
+Minnie: cutting over to new chain.
+Donald: cutting over to new chain.
+Minnie: found proof for block 68: 11167
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: cutting over to new chain.
+Minnie: found proof for block 69: 13622
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: cutting over to new chain.
+Minnie: found proof for block 70: 13330
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: cutting over to new chain.
+Donald: found proof for block 71: 9343
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: found proof for block 72: 3000
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: found proof for block 73: 5358
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Donald: found proof for block 74: 6537
+Donald: cutting over to new chain.
+Minnie: cutting over to new chain.
+Mickey: cutting over to new chain.
+Final balances, from Alice's perspective:
+Alice: Showing balances:
+    Lxg2iphzBnwEffNmiA3Fr6P4D3lOkW0HEonVNswGNKA= (Alice): 192
+    iAZrYb2URc8yUF5Qk7J2t3b1JmYSnh6SN2AqQCVPZOU= (Bob): 139
+    sjCLJbAy3X2a2WGOaGirobQ4gKAfOxulvMxytavWh3E= (Charlie): 67
+    nDeIIZE9ymU1Vc5sB408w1RsAcdZHHGkbLSK0uIcd3c= (Minnie): 951
+    vlOaYmq5C6HjEkgMmf0bGcHI89j6qzKfG6MTQ71fhmk= (Mickey): 700
+    IIO+/VhNGaPN/Imd6KVzba0eMbDZpQdA+375kuiuFZc= (Donald): 725

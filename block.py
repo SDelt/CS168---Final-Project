@@ -1,11 +1,3 @@
-"""
-Authors: Elijah Carter & Johnson Bao
-Date: 4/25/2024
-Last modified:  4/25/2024
-Version: 1.0
-
-"""
-
 import json
 import datetime
 from utils import hash as utils_hash
@@ -13,26 +5,30 @@ from collections import defaultdict
 
 class Block:
     def __init__(self, reward_addr, prev_block, target=None, coinbase_reward=None):
+        from blockchain import Blockchain
         self.prev_block_hash = prev_block.hash_val() if prev_block else None
-        self.target = target
+        
+        self.target = target if target is not None else Blockchain.POW_TARGET()
+        self.coinbase_reward = coinbase_reward if coinbase_reward is not None else Blockchain.coinbase_amt_allowed()
+        
         self.balances = defaultdict(int, prev_block.balances if prev_block else {})
         self.next_nonce = defaultdict(int, prev_block.next_nonce if prev_block else {})
         self.transactions = {}
         self.chain_length = prev_block.chain_length + 1 if prev_block else 0
         self.timestamp = datetime.datetime.now().timestamp()
         self.reward_addr = reward_addr
-        self.coinbase_reward = coinbase_reward if coinbase_reward is not None else 25  # Default to 25 if not specified
 
         if prev_block and prev_block.reward_addr:
             winner_balance = self.balances[prev_block.reward_addr]
             self.balances[prev_block.reward_addr] = winner_balance + self.total_rewards()
+
 
     def is_genesis_block(self):
         return self.chain_length == 0
 
     def has_valid_proof(self):
         h = utils_hash(self.serialize())
-        n = int(h, 16)
+        n = int('0x' + h, 16)
         return n < self.target
 
     def serialize(self):
@@ -101,7 +97,10 @@ class Block:
         return self.balances.get(addr, 0)
 
     def total_rewards(self):
-        return sum(tx.fee for tx in self.transactions.values()) + self.coinbase_reward
+        total_fees = sum(tx.fee for tx in self.transactions.values())
+        coinbase_reward = self.coinbase_reward
+        total_rewards = total_fees + coinbase_reward
+        return total_rewards
 
     def contains(self, tx):
         return tx.id in self.transactions
