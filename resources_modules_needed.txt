@@ -2,7 +2,7 @@ Resources:
 - Python constructors = https://realpython.com/python-class-constructor/
 - node.js vs Python = https://radixweb.com/blog/nodejs-vs-python
 - @property = https://www.programiz.com/python-programming/property
-- @staticmethod = https://www.google.com/search?q=%40staticmethod+in+python&oq=%40staticme&gs_lcrp=EgZjaHJvbWUqDAgCEAAYFBiHAhiABDIGCAAQRRg5MgcIARAAGIAEMgwIAhAAGBQYhwIYgAQyBwgDEAAYgAQyBwgEEAAYgAQyBwgFEAAYgAQyBwgGEAAYgAQyBwgHEAAYgAQyBwgIEAAYgATSAQgyNzM1ajBqNKgCALACAA&sourceid=chrome&ie=UTF-8
+- @staticmethod = https://www.geeksforgeeks.org/python-staticmethod-function/
 - Circular imports = https://builtin.com/articles/python-circular-import#:~:text=What%20Is%20Python%20Circular%20Import,unpredictable%20behavior%20and%20runtime%20errors.
 - Circular imports = https://rollbar.com/blog/how-to-fix-circular-import-in-python/
 	- Fixed by utilizing modular imports where appropriate in the different files/functions

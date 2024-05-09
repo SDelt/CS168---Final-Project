@@ -44,6 +44,12 @@ class Miner(Client):
         if not one_and_done:
             self.emit(Blockchain.START_MINING)
 
+    def add_coinbase_reward(self):
+        coinbase_reward = self.current_block.coinbase_reward
+        miner_address = self.current_block.reward_addr
+        self.current_block.add_to_balance(miner_address, coinbase_reward)
+
+
     def announce_proof(self):
         from blockchain import Blockchain
         self.net.broadcast(Blockchain.PROOF_FOUND, self.current_block)
@@ -52,8 +58,9 @@ class Miner(Client):
         b = super().receive_block(s)
 
         if b is None:
+            self.add_coinbase_reward()  # Add coinbase reward to miner's balance
             return None
-
+        
         if self.current_block and b.chain_length >= self.current_block.chain_length:
             self.log("cutting over to new chain.")
             tx_set = self.sync_transactions(b)
