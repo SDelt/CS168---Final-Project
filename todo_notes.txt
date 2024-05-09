@@ -1,3 +1,82 @@
+--------------------------------------------- 5/8/2024 ---------------------------------------------
+
+Unable to finish by project due date
+- Infinite loop when mining
+- Provide missing blocks for donald
+- update miner
+
+Changes to block.py:
+- added methods to deduct or add to the balances of the clients last known block
+
+    def deduct_balance(self, addr, amount):
+        self.balances[addr] -= amount
+    
+    def add_to_balance(self, addr, amount):
+        self.balances[addr] += amount
+
+Changes to client.py:
+- Added local broadcasting for requesting and receiving blocks
+
+    def request_missing_block(self, block):
+        from blockchain import Blockchain
+        missing_block_hash = block.prev_block_hash
+        self.log(f"Asking for missing block: {missing_block_hash}")
+
+        msg = {
+            'from': self.address,
+            'missing': missing_block_hash
+        }
+
+        for client in self.net.clients:
+            if client.address != self.address:  # Exclude self from broadcasting
+                client.receive_missing_block_request(msg)
+    
+    def receive_missing_block_request(self, msg):
+        missing_block_hash = msg['missing']
+        if missing_block_hash in self.blocks:
+            block = self.blocks[missing_block_hash]
+            self.log(f"{self.name}: Providing missing block {missing_block_hash}")
+            self.send_block(block)
+			
+- Added functions so when a client object is sent to fakeNet and then a POST_TRANSACTION message is received, then we can call make_deductions to adjust the sender and receivers balances
+
+	def make_deduction(self, tx):
+        self.validate_transaction(tx)
+        self.process_payments(tx)
+        self.apply_transaction_fee(tx)
+
+    def validate_transaction(self, tx):
+        total_payments_with_fee = self.calculate_total_with_fee(tx)
+        sender_balance = self.last_confirmed_block.balance_of(self.address)
+        if total_payments_with_fee > sender_balance:
+            raise Exception(f"Requested {total_payments_with_fee}, but account only has {sender_balance}.")
+
+    def calculate_total_with_fee(self, tx):
+        total_payments = sum(output['amount'] for output in tx.outputs)
+        fee = tx.fee if hasattr(tx, 'fee') else Blockchain.get_default_tx_fee()
+        return total_payments + fee
+
+    def process_payments(self, tx):
+        total_payments = sum(output['amount'] for output in tx.outputs)
+        amount_to_pay = total_payments // len(tx.outputs)
+        for output in tx.outputs:
+            self.send_payment(output['address'], amount_to_pay)
+
+    def apply_transaction_fee(self, tx):
+        fee = tx.fee if hasattr(tx, 'fee') else Blockchain.get_default_tx_fee()
+        total_payments_with_fee = sum(output['amount'] for output in tx.outputs) + fee
+        self.last_confirmed_block.deduct_balance(self.address, total_payments_with_fee)
+
+    def send_payment(self, recipient_address, amount):
+        self.last_confirmed_block.add_to_balance(recipient_address, amount)
+        logging.info(f"Updated {amount} gold to {recipient_address}")
+			
+Changes in block.py:
+- Added a function to change the balance of the last_confirmed_block in client when a client sends another some money
+
+    def deduct_balance(self, addr, amount):
+        self.balances[addr] -= amount
+
 --------------------------------------------- 5/7/2024 ---------------------------------------------
 
 Major overhaul for project realized the communication to fakeNet was only suitable for clients who were not miners. 

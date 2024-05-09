@@ -26,14 +26,12 @@ class FakeNet:
                 if msg == Blockchain.START_MINING:
                     address.find_proof()
                 elif msg == Blockchain.POST_TRANSACTION:
-                    # self.print_message(msg) 
                     address.add_transaction(tx)
                 else:
                     print("Invalid message for Miner:", msg)
             elif isinstance(address, Client):  # Check if address is an instance of Client
                 if msg == Blockchain.POST_TRANSACTION:
-                    # self.print_message(msg)
-                    address.makeDeductions(tx)
+                    address.make_deduction(tx)
                 else:
                     print("Invalid message for Client:", msg)
             else:
@@ -45,9 +43,3 @@ class FakeNet:
 
     def recognizes(self, client):
         return client.address in self.clients
-    
-    @staticmethod    
-    def print_message(msg):
-        print("")
-        print("*** ", msg, " ***")
-        print("")

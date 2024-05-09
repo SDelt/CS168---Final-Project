@@ -5,7 +5,9 @@ class Miner(Client):
     def __init__(self, name=None, password=None, net=None, starting_block=None, key_pair=None, mining_rounds=None):
         from blockchain import Blockchain
         super().__init__(name, password, net, starting_block, key_pair)
-        self.mining_rounds = mining_rounds
+        
+        self.mining_rounds = mining_rounds if mining_rounds is not None else Blockchain.get_num_rounds_mining()
+        
         self.transactions = set()
     
     def initialize(self):
@@ -48,7 +50,7 @@ class Miner(Client):
 
     def receive_block(self, s):
         b = super().receive_block(s)
-        
+
         if b is None:
             return None
 
@@ -58,7 +60,6 @@ class Miner(Client):
             self.start_new_search(tx_set)
 
         return b
-
 
     def sync_transactions(self, nb):
         cb = self.current_block

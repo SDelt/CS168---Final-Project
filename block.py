@@ -104,3 +104,9 @@ class Block:
 
     def contains(self, tx):
         return tx.id in self.transactions
+        
+    def deduct_balance(self, addr, amount):
+        self.balances[addr] -= amount
+    
+    def add_to_balance(self, addr, amount):
+        self.balances[addr] += amount

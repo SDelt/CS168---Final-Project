@@ -176,7 +176,7 @@ class Blockchain:
             client.generate_address(self.mnemonic)
             self.register_clients(client_cfg['amount'], client)
 
-    def register_clients(self, amount, *clients):
+    def register_clients(self, amount=None, *clients):
         for client in clients:
             self.client_address_map[client.address] = client
             if client.name:
@@ -187,6 +187,7 @@ class Blockchain:
             client.net = self.net
             self.net.register(client)
             self.initial_balances[client.address] = amount
+
         
     def start(self, ms=None, f=None):
     
